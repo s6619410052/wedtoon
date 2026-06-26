@@ -1,55 +1,320 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="th">
 
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MangaWebD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* สไตล์กำหนดเองเพิ่มเติมเพื่อให้เป็น Webtoon */
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* ใช้ฟอนต์ที่ดูทันสมัย */
+            background-color: #f6f6f6;
+        }
+
+        /* Navbar */
+        .navbar-webtoon {
+            background-color: #fff;
+            border-bottom: 1px solid #e2e2e2;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .navbar-webtoon .navbar-brand {
+            font-size: 24px;
+            font-weight: 800;
+            color: #e61596;
+            /* สีสัญลักษณ์ Webtoon */
+        }
+
+        .navbar-webtoon .nav-link {
+            font-weight: 500;
+            color: #000000;
+        }
+
+        /* แบนเนอร์แนะนำ */
+        .hero-carousel .carousel-item img {
+            height: 400px;
+            /* ปรับความสูงแบนเนอร์ */
+            object-fit: cover;
+        }
+
+        .hero-carousel .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            bottom: 30px;
+        }
+
+        /* กล่องการ์ตูน (Card) */
+        .comic-card-wt {
+            border: none;
+            background-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .comic-card-wt .card-img-top {
+            border-radius: 12px;
+            height: auto;
+            aspect-ratio: 16/10;
+            /* สัดส่วนรูปที่แคบลง */
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .comic-card-wt:hover .card-img-top {
+            transform: translateY(-5px);
+            /* เลื่อนขึ้นเล็กน้อยตอนชี้ */
+        }
+
+        .comic-card-wt .card-body {
+            padding: 10px 0;
+        }
+
+        .comic-card-wt .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            /* จำกัดชื่อไม่ให้ขึ้นบรรทัดใหม่ */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .comic-card-wt .card-text {
+            font-size: 13px;
+            color: #030303;
+            margin-bottom: 0;
+        }
+
+        /* แท็บหมวดหมู่/วัน */
+        .category-tab .nav-link {
+            font-weight: 600;
+            color: #e61596;
+            border-radius: 30px;
+            padding: 8px 18px;
+            margin-right: 5px;
+        }
+
+        .category-tab .nav-link.active {
+            background-color: #e61596;
+            color: #fff;
+        }
+    </style>
 </head>
-<style>
-  body {
-    font-family: 'Sarabun', sans-serif;
-  }
-</style>
 
-<div class="container-fluid p-0">
+<body>
 
-  <div class="row g-0">
+    <nav class="navbar navbar-expand-lg navbar-webtoon sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MangaD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavWT">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavWT">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">การ์ตูน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">หมวดหมู่</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">สัปดาห์นี้</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">กำลังฮิต</a></li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 rounded-pill" type="search" placeholder="ค้นหาการ์ตูน">
+                    <button class="btn btn-outline-dark rounded-pill" type="submit">ค้นหา</button>
+                </form>
+            </div>
+        </div>
+    </nav>
 
-    <!-- ฝั่งซ้าย -->
-    <div class="col-12 col-md-6 left-center">
+    <a href="page.html" class="text-decoration-none ">
+        <div id="heroCarouselWT" class="carousel slide hero-carousel container mt-4" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-3 shadow">
+                <div class="carousel-item active">
+                    <img src="https://i.pinimg.com/1200x/a2/14/3b/a2143b1c45593137cb58bff43a9ac04b.jpg"
+                        class="d-block w-100" alt="แบนเนอร์">
+                </div>
+    </a>
 
-      <img src="images/1.png">
+    <a href="page.html" class="text-decoration-none ">
+        <div class="carousel-item">
+            <img src="https://i.pinimg.com/736x/42/14/00/4214008753d2a14750a791cadb050448.jpg" class="d-block w-100"
+                alt="แบนเนอร์">
+
+        </div>
+    </a>
+
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarouselWT" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarouselWT" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </a>
+
+    <main class="container mt-5 mb-5">
+
+        <ul class="nav nav-pills category-tab mb-4 justify-content-center" id="dayTabs" role="tablist">
+
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="mon-tab" data-bs-toggle="pill" href="#mon" role="tab">จันทร์</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tue-tab" data-bs-toggle="pill" href="#tue" role="tab">อังคาร</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="wed-tab" data-bs-toggle="pill" href="#wed" role="tab">พุธ</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="thu-tab" data-bs-toggle="pill" href="#thu" role="tab">พฤหัสบดี</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="fri-tab" data-bs-toggle="pill" href="#fri" role="tab">ศุกร์</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="sat-tab" data-bs-toggle="pill" href="#sat" role="tab">เสาร์</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="sun-tab" data-bs-toggle="pill" href="#sun" role="tab">อาทิตย์</a>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-4" id="dayTabsContent">
+
+            <div class="tab-pane fade show active" id="sun" role="tabpanel" aria-labelledby="sun-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันอาทิตย์</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันอาทิตย์ ]</p>
+            </div>
+
+            <div class="tab-pane fade" id="mon" role="tabpanel" aria-labelledby="mon-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันจันทร์</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันจันทร์ ]</p>
+            </div>
+
+            <div class="tab-pane fade" id="tue" role="tabpanel" aria-labelledby="tue-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันอังคาร</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันอังคาร ]</p>
+            </div>
+
+            <div class="tab-pane fade" id="wed" role="tabpanel" aria-labelledby="wed-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันพุธ</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันพุธ ]</p>
+            </div>
+
+            <div class="tab-pane fade" id="thu" role="tabpanel" aria-labelledby="thu-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันพฤหัสบดี</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันพฤหัสบดี ]</p>
+            </div>
+
+            <div class="tab-pane fade" id="fri" role="tabpanel" aria-labelledby="fri-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันศุกร์</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันศุกร์ ]</p>
+            </div>
+
+            <div class="tab-pane fade" id="sat" role="tabpanel" aria-labelledby="sat-tab">
+                <h3 class="fw-bold mb-4 fs-5 text-center">รายชื่อการ์ตูนอัปเดตวันเสาร์</h3>
+                <p class="text-center text-muted py-5">[ การ์ตูนวันเสาร์ ]</p>
+            </div>
+
+        </div>
+
+        <h2 class="fw-bold mb-4 fs-4 text-center">รายการที่แนะนำ</h2>
 
 
+        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
 
-    <h1>Anchinet Songphirot</h1>
+            <div class="col">
+                <a href="page.html" class="text-decoration-none ">
+                    <div class="card h-100 comic-card-wt">
+                        <img src="https://i.pinimg.com/webp87/736x/2c/78/65/2c7865a5c6a3035297d1850a4078a395.webp"
+                            class="card-img-top" alt="หน้าปกการ์ตูน">
+                        <div class="card-body">
+                            <h5 class="card-title">บันทึกรักจอมเวท</h5>
+                            <p class="card-text">แฟนตาซี</p>
+                            <p class="card-text text-muted small">ตอนที่ 45</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    <h2>Contact</h2>
-    <p>Phone:0653522395</p>
-    <p>Email:s6619410052@sau.ac.th</p>
-    <p>Address: Thon Buri Subdistrict, Thon Buri District, Bangkok</p>
+            <div class="col">
+                <a href="page.html" class="text-decoration-none ">
+                    <div class="card h-100 comic-card-wt">
+                        <img src="https://i.pinimg.com/736x/68/bb/80/68bb80f2b1e7aa6847190e1ee3ae9d81.jpg"
+                            class="card-img-top" alt="หน้าปกการ์ตูน">
+                        <div class="card-body">
+                            <h5 class="card-title">ชีวิตสโลว์ไลฟ์</h5>
+                            <p class="card-text">โรแมนติก</p>
+                            <p class="card-text text-muted small">ตอนที่ 12</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    <h2>Profile</h2>
-    <p>
-      IT student interested in web development and database systems.
-      Able to create responsive websites and work well both independently and in a team.
+            <div class="col">
+                <a href="page.html" class="text-decoration-none ">
+                    <div class="card h-100 comic-card-wt">
+                        <img src="https://i.pinimg.com/webp87/736x/8e/52/16/8e52169acdf3296e7a3926d70fdc9580.webp"
+                            class="card-img-top" alt="หน้าปกการ์ตูน">
+                        <div class="card-body">
+                            <h5 class="card-title">พลิกตำนานดาบ</h5>
+                            <p class="card-text">แอคชั่น</p>
+                            <p class="card-text text-muted small">ตอนที่ 88</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    </p>
+            <div class="col">
+                <a href="page.html" class="text-decoration-none ">
+                    <div class="card h-100 comic-card-wt">
+                        <img src="https://i.pinimg.com/736x/31/0c/fd/310cfda8765305f5f788300adf391e32.jpg"
+                            class="card-img-top" alt="หน้าปกการ์ตูน">
+                        <div class="card-body">
+                            <h5 class="card-title">เจ้าหญิงในนิยาย</h5>
+                            <p class="card-text">ดราม่า</p>
+                            <p class="card-text text-muted small">ตอนที่ 05</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    <h2>Education</h2>
-    <p>University: Southeast Asia University</p>
-    <p>Major: computer engineering</p>
+            <div class="col">
+                <a href="page.html" class="text-decoration-none">
+                    <div class="card h-100 comic-card-wt">
+                        <img src="https://i.pinimg.com/736x/0c/c2/9c/0cc29c40eb3f7ca2b664ae5c575d6142.jpg"
+                            class="card-img-top" alt="หน้าปกการ์ตูน">
+                        <div class="card-body">
+                            <h5 class="card-title">ตำนานอสูรล่าวิญญาณ</h5>
+                            <p class="card-text">สยองขวัญ</p>
+                            <p class="card-text text-muted small">ตอนที่ 23</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="page.html" class="text-decoration-none ">
+                    <div class="card h-100 comic-card-wt">
+                        <img src="https://i.pinimg.com/webp87/736x/47/bb/66/47bb66c975b73219436b41ffb9992c9a.webp"
+                            class="card-img-top" alt="หน้าปกการ์ตูน">
+                        <div class="card-body">
+                            <h5 class="card-title">ศึกชิงบัลลังก์มังกร</h5>
+                            <p class="card-text">แฟนตาซี</p>
+                            <p class="card-text text-muted small">ตอนที่ 56</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
 
-    <h2>Skills</h2>
-    <p>HTML, CSS, Bootstrap </p>
+        </div>
+    </main>
 
-
-  </div>
-
-</div>
-
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
 </html>
